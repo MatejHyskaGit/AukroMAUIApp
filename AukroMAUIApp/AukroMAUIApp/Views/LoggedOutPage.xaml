@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AukroMAUIApp.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="AukroMAUIApp.Views.LoggedOutPage">
+
+
+    <ContentPage.BindingContext>
+        <vm:LoggedOutViewModel />
+    </ContentPage.BindingContext>
+
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+
+            <Label 
+                Text="You have successfully been logged out."
+                />
+            <Button 
+                Text="Return to main page"
+                Command="{Binding ReturnCommand}"
+                />
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

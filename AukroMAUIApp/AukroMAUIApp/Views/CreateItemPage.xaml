@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AukroMAUIApp.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="AukroMAUIApp.Views.CreateItemPage">
+
+    <ContentPage.BindingContext>
+        <vm:CreateItemViewModel />
+    </ContentPage.BindingContext>
+    
+    
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Button
+                Text="Home"
+                Command="{Binding GoHomeCommand}"
+                HorizontalOptions="Center" />            
+            
+            <Entry 
+                Placeholder="Enter Name"
+                ClearButtonVisibility="WhileEditing"
+                Text="{Binding Name}">
+                <Entry.Behaviors>
+                    <toolkit:EventToCommandBehavior
+                    EventName="TextChanged"
+                    Command="{Binding NameChangeCommand}" />
+                </Entry.Behaviors>
+            </Entry>
+
+            <Entry 
+                Placeholder="Enter Description"
+                ClearButtonVisibility="WhileEditing"
+                Text="{Binding Description}">
+            </Entry>
+            <Entry 
+                Placeholder="Enter Price"
+                ClearButtonVisibility="WhileEditing"
+                Keyboard="Numeric"
+                Text="{Binding Price}">
+                <Entry.Behaviors>
+                    <toolkit:EventToCommandBehavior
+                        EventName="TextChanged"
+                        Command="{Binding PriceChangeCommand}" />
+                </Entry.Behaviors>
+            </Entry>
+
+            <Picker x:Name="CategoryPicker"
+                    Title="Select a category"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding PickedCategory}">
+                
+            </Picker>
+
+            <Button 
+                Text="Create"
+                Command="{Binding CreateCommand}"
+                IsEnabled="{Binding ButtonEnable}"
+                />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AukroMAUIApp.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="AukroMAUIApp.Views.DetailsPage">
+
+
+    <ContentPage.BindingContext>
+        <vm:DetailsViewModel />
+    </ContentPage.BindingContext>
+
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+
+            <Button
+                Text="Home"
+                Command="{Binding GoHomeCommand}"
+                HorizontalOptions="Center" />
+
+            <Label 
+                Text="{Binding Name}"
+                />
+            <Label 
+                Text="{Binding Description}"
+                />
+            <Label 
+                Text="{Binding Price}"
+                />
+            <Label 
+                Text="{Binding OwnerName}"
+                />
+            <Label 
+                Text="{Binding LastBidderName}"
+                />
+            <Label 
+                Text="{Binding CategoryName}"
+                />
+            <HorizontalStackLayout>
+
+                <Entry 
+                    Placeholder="Enter new price"
+                    ClearButtonVisibility="WhileEditing"
+                    HorizontalOptions="Center"
+                    Keyboard="Numeric"
+                    Text="{Binding NewPrice}">
+                    <Entry.Behaviors>
+                        <toolkit:EventToCommandBehavior
+                            EventName="TextChanged"
+                            Command="{Binding PriceChangeCommand}" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Button 
+                    Text="Bid"
+                    HorizontalOptions="Center"
+                    Command="{Binding BidCommand}"
+                    IsEnabled="{Binding ButtonEnable}"
+                />
+                
+
+            </HorizontalStackLayout>
+            <Button 
+                    Text="Delete"
+                    HorizontalOptions="Center"
+                    Command="{Binding DeleteCommand}"
+                    IsVisible="{Binding DeleteVisible}"
+                    />
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

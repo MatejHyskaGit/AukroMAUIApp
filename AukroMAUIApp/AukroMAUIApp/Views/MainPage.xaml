@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AukroMAUIApp.ViewModels"
+             x:Class="AukroMAUIApp.Views.MainPage">
+
+
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Label 
+                x:Name="LoggedInName"
+                Text="{Binding LoggedInName}"
+                />
+
+            <Button
+                Text="Create new account"
+                Command="{Binding GoToCreateCommand}"
+                HorizontalOptions="Center" />
+            <Button
+                x:Name="LoginoutBtn"
+                Command="{Binding GoToLoginCommand}"
+                HorizontalOptions="Center" />
+            <Button
+                Text="Create new item"
+                Command="{Binding GoItemCreateCommand}"
+                HorizontalOptions="Center" />
+
+
+            <ListView x:Name="MyListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Name}"
+                          Detail="{Binding Price}" 
+                          Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.GoDetailCommand}"
+                          CommandParameter="{Binding Id}"
+                          />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
